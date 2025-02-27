@@ -1,0 +1,11 @@
+.reveal section img {
+  border: none;
+  box-shadow: none;
+}
+
+.code-example {
+  width: 90%;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 0.8em;
+}
