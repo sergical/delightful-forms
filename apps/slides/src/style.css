@@ -192,3 +192,47 @@
     font-size: 0.7em;
   }
 }
+
+/* Modern Interfaces Grid */
+.modern-interfaces-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 2rem auto;
+  max-width: 90%;
+}
+
+.interface-example {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.interface-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease-in-out;
+}
+
+.interface-image:hover {
+  transform: scale(1.02);
+}
+
+.interface-caption {
+  font-size: 0.9em;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+/* Responsive adjustments for the interfaces grid */
+@media (max-width: 960px) {
+  .modern-interfaces-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}

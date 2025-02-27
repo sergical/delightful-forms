@@ -33,7 +33,7 @@ export default function RootLayout({
         className={cn(
           geistSans.variable,
           geistMono.variable,
-          "antialiased min-h-screen bg-background"
+          "antialiased min-h-screen bg-background",
         )}
       >
         <ThemeProvider
@@ -44,7 +44,7 @@ export default function RootLayout({
         >
           <div className="flex min-h-screen flex-col">
             <header className="border-b border-border bg-card">
-              <div className="container flex h-16 items-center justify-between px-4">
+              <div className="container mx-auto flex h-16 items-center justify-between px-4">
                 <div className="flex items-center space-x-4">
                   <Link href="/" className="flex items-center space-x-3">
                     <span className="text-xl font-semibold">
@@ -65,7 +65,9 @@ export default function RootLayout({
                 </nav>
               </div>
             </header>
-            <main className="flex-1 container py-8 px-4">{children}</main>
+            <main className="flex-1 container mx-auto py-8 px-4">
+              {children}
+            </main>
           </div>
         </ThemeProvider>
       </body>

@@ -30,7 +30,7 @@ export default function URLStateForm() {
       });
       return newSearchParams.toString();
     },
-    [searchParams]
+    [searchParams],
   );
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -46,7 +46,7 @@ export default function URLStateForm() {
             email: formData.get("email") as string,
             message: formData.get("message") as string,
             status: "submitting",
-          })
+          }),
       );
     });
 
@@ -62,7 +62,7 @@ export default function URLStateForm() {
             email: formData.get("email") as string,
             message: formData.get("message") as string,
             status: "success",
-          })
+          }),
       );
     });
   };

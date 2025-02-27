@@ -1,31 +1,18 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export type FormState = { error: string } | null;
-
-export async function submitForm(
-  prevState: FormState,
-  formData: FormData,
-): Promise<FormState> {
+export async function handleSignIn(formData: FormData) {
   // Simulate server delay
   await new Promise((resolve) => setTimeout(resolve, 1500));
 
   // Extract form data
-  const name = formData.get("name") as string;
-  const email = formData.get("email") as string;
-  const message = formData.get("message") as string;
+  const email = formData.get("email");
+  const password = formData.get("password");
 
-  // Simple validation
-  if (!name || !email || !message) {
-    return { error: "All fields are required" };
-  }
+  // Log the attempt
+  console.log("Sign in attempt:", { email });
 
-  // Process the submission (in a real app, this would save to a database)
-  console.log("Form submitted:", { name, email, message });
-
-  // Revalidate the current path before redirecting
-  revalidatePath("/basic");
-  redirect("/basic/success");
+  // Just redirect
+  redirect("/success");
 }

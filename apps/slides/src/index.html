@@ -16,6 +16,9 @@
           <h1>Delightful Forms</h1>
           <h3>A Journey from Basic to Beautiful</h3>
           <p>Building better form experiences in React</p>
+          <aside class="notes">
+            This is a work in progress. Kinda like a standup comedian practicing their material at their local pub. Would love to get your feedback afterwards. This presentation is built with Reveal.js, which was my fist time using it but Cursor did most of the work.
+          </aside>
         </section>
         
         <!-- About Me -->
@@ -23,16 +26,18 @@
           <h2>About Me</h2>
           <div class="content-columns">
             <div>
-              <p>Projects:</p>
+              
               <ul>
                 <li>Founding Engineer at Acctual</li>
                 <li>Building finance tools for crypto native companies</li>
                 <li>Working with React, TypeScript, and NextJS</li>
+                <li>Organizer of <a href="https://guild.host/react-toronto">React Toronto</a></li>
               </ul>
             </div>
             <div class="avatar-container">
               <img src="images/sergical.jpg" alt="Sergiy Dybskiy" class="avatar">
             </div>
+            
           </div>
         </section>
 
@@ -45,8 +50,26 @@
         <!-- Forms in the Wild -->
         <section>
           <section>
-            <h2>Forms in the Wild</h2>
-            <img src="images/v0.png" alt="Forms Evolution" style="max-width: 80%;">
+            <h2>What people were used to</h2>
+            <img src="images/flight-reservation.jpg" alt="Forms Evolution" style="max-width: 80%;">
+          </section>
+
+          <section>
+            <h2>What people use most now</h2>
+            <div class="modern-interfaces-grid">
+              <div class="interface-example">
+                <img src="images/v0.png" alt="V0 Interface" class="interface-image">
+                <p class="interface-caption">V0 - AI-First Development</p>
+              </div>
+              <div class="interface-example">
+                <img src="images/chatgpt.png" alt="ChatGPT Interface" class="interface-image">
+                <p class="interface-caption">ChatGPT - Conversational AI</p>
+              </div>
+              <div class="interface-example">
+                <img src="images/cursor.png" alt="Cursor Interface" class="interface-image">
+                <p class="interface-caption">Cursor - AI-Powered IDE</p>
+              </div>
+            </div>
           </section>
           
           <section>
@@ -113,64 +136,17 @@
         <!-- Bad Examples -->
         <section>
           <section>
-            <h2>The Bad & The Ugly</h2>
-            <h4>Real-world examples of poor form UX</h4>
-            <div class="image-placeholder">
-              <p>[Insert painful form GIF here]</p>
-            </div>
+            <h2>One of the reasons for this talk</h2>
+            <h4>Eleven Labs Tool form</h4>
+            <video src="videos/11labs.mp4" autoplay loop muted  alt="Eleven Labs Tool form" style="max-width: 80%;"></video>
           </section>
 
           <section>
-            <h3>Airline Booking Forms</h3>
-            <div class="content-columns">
-              <div>
-                <ul>
-                  <li>Complex multi-step processes</li>
-                  <li>Unclear error messages</li>
-                  <li>Session timeouts</li>
-                  <li>Lost data on back navigation</li>
-                </ul>
-              </div>
-              <div class="image-placeholder">
-                <p>[Insert airline booking fail screenshot]</p>
-              </div>
-            </div>
+            <h3>Me</h3>
+            <iframe src="https://giphy.com/embed/l3q2K5jinAlChoCLS" width="407" height="480" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/mashable-l3q2K5jinAlChoCLS">via GIPHY</a></p>
           </section>
           
-          <section>
-            <h3>Tax Filing Software</h3>
-            <div class="content-columns">
-              <div>
-                <ul>
-                  <li>Overwhelming complexity</li>
-                  <li>Confusing navigation</li>
-                  <li>Technical jargon</li>
-                  <li>Fear-inducing messaging</li>
-                </ul>
-              </div>
-              <div class="image-placeholder">
-                <p>[Insert tax software screenshot]</p>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h3>Financial Applications</h3>
-            <div class="content-columns">
-              <div>
-                <ul>
-                  <li>Excessive security measures</li>
-                  <li>Authentication frustrations</li>
-                  <li>Data entry without context</li>
-                  <li>Cryptic error messages</li>
-                </ul>
-              </div>
-              <div class="image-placeholder">
-                <p>[Insert banking form screenshot]</p>
-              </div>
-            </div>
-            <p class="fragment">These are the challenges we face at Acctual</p>
-          </section>
+          
 
           <section>
             <h3>Common Anti-patterns</h3>
@@ -181,10 +157,15 @@
               <li class="fragment">Losing state on navigation</li>
               <li class="fragment">Friction when users need help most</li>
             </ul>
-            <div class="image-placeholder fragment">
-              <p>[Insert funny error message GIF]</p>
-            </div>
+            
           </section>
+        </section>
+
+        <section>
+          <h1>Example of a delightful form</h1>
+          <h3>Clerk sign up</h3>
+          <img src="images/clerk-new.gif" alt="Clerk sign up" style="max-width: 400px ">
+          <p>We're going to build something like this</p>
         </section>
 
         <!-- Basic Forms - Step 1 -->
@@ -192,9 +173,7 @@
           <section>
             <h2>1. Basic Forms with Server Actions</h2>
             <h4>Starting with a simple login form</h4>
-            <div class="image-placeholder">
-              <p>[Insert email/password form similar to the example image]</p>
-            </div>
+            <img src="images/step-1.png " alt="Basic Form" style="max-width: 400px;">
           </section>
 
           <section>
@@ -263,7 +242,7 @@ export async function handleSignIn(formData: FormData) {
         <!-- Multiple Submissions Problem - Step 2 -->
         <section>
           <section>
-            <h2>2. The Multiple Submissions Problem</h2>
+            <h2>The Multiple Submissions Problem</h2>
             <h4>What happens without disabling inputs?</h4>
           </section>
           
@@ -276,8 +255,9 @@ export async function handleSignIn(formData: FormData) {
               <li class="fragment">Creates unnecessary server load</li>
               <li class="fragment">Users have no feedback that their submission is processing</li>
             </ul>
-            <div class="image-placeholder fragment">
-              <p>[Insert GIF of someone clicking a submit button repeatedly]</p>
+            <div class="fragment">
+
+              <iframe src="https://giphy.com/embed/mcsPU3SkKrYDdW3aAU" width="300" height="300" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cat-computer-mcsPU3SkKrYDdW3aAU">via GIPHY</a></p>
             </div>
           </section>
           
@@ -293,8 +273,8 @@ export async function handleSignIn(formData: FormData) {
         <!-- Fieldset Solution - Step 3 -->
         <section>
           <section>
-            <h2>3. Using Fieldset to Prevent Multiple Submissions</h2>
-            <h4>A simple HTML solution</h4>
+            <h2>2. Pending State</h2>
+            <h4>A simple solution to the multiple submissions problem</h4>
           </section>
           
           <section>
@@ -350,7 +330,7 @@ function SubmitButton() {
         <!-- Schema Validation - Step 4 -->
         <section>
           <section>
-            <h2>4. Schema Validation with Zod</h2>
+            <h2>3. Schema Validation with Zod</h2>
             <h4>Type-safe validation</h4>
           </section>
 
@@ -448,9 +428,9 @@ export default function SignInForm() {
               <p>[Live Demo: Sign In Form with Zod Validation]</p>
             </div>
             <ul>
-              <li class="fragment">✅ Real-time error feedback</li>
-              <li class="fragment">✅ Password strength requirements</li>
-              <li class="fragment">✅ Type-safe validation on client and server</li>
+              <li class="fragment">✅ Better DX</li>
+              
+              <li class="fragment">✅ Type-safe server-side validation</li>
             </ul>
           </section>
         </section>
@@ -458,7 +438,7 @@ export default function SignInForm() {
         <!-- Form Management - Step 5 -->
         <section>
           <section>
-            <h2>5. Enhanced Form Management</h2>
+            <h2>4. Enhanced Form Management</h2>
             <h4>React Hook Form</h4>
           </section>
 
@@ -561,98 +541,21 @@ export default function SignInForm() {
           </section>
         </section>
 
-        <!-- URL vs Client State - Step 4 -->
+
         <section>
           <section>
-            <h2>4. State Persistence</h2>
-            <h4>URL vs Client State</h4>
+            <h2>5. ShadCN Form</h2>
+            <h4>Wouldn't be a talk in 2025 without mentioning ShadCN</h4>
           </section>
 
           <section>
-            <h3>URL Parameters</h3>
-            <pre><code class="language-typescript">// URL: /form?name=John&email=john@example.com
-
-const searchParams = useSearchParams();
-const name = searchParams.get('name') || '';
-const email = searchParams.get('email') || '';
-
-// Update URL with form data
-const updateUrlParams = (data) => {
-  const params = new URLSearchParams(searchParams);
-  Object.entries(data).forEach(([key, value]) => {
-    if (value) params.set(key, value);
-    else params.delete(key);
-  });
-  router.push(`/form?${params.toString()}`);
-};</code></pre>
-            <p class="fragment">Works for sharing and bookmarking</p>
-            <p class="fragment">But has serious limitations...</p>
-          </section>
-
-          <section>
-            <h3>URL Parameter Limitations</h3>
-            <ul>
-              <li class="fragment">URL length limitations (2-8KB)</li>
-              <li class="fragment">Sensitive data exposed in URL</li>
-              <li class="fragment">Can't store complex data types</li>
-              <li class="fragment">URL encoding/decoding issues</li>
-            </ul>
-            <div class="image-placeholder fragment">
-              <p>[Insert long URL image]</p>
-            </div>
-          </section>
-
-          <section>
-            <h3>Zustand + Cookie Storage</h3>
-            <pre><code class="language-typescript">export const useFormStore = create(
-  persist(
-    (set) => ({
-      currentStep: 0,
-      formData: { name: '', email: '', message: '' },
-      
-      setField: (field, value) => 
-        set((state) => ({ 
-          formData: { ...state.formData, [field]: value } 
-        })),
-      
-      nextStep: () => 
-        set((state) => ({ 
-          currentStep: state.currentStep + 1 
-        })),
-      // More actions...
-    }),
-    {
-      name: 'form-storage',
-      storage: createJSONStorage(() => cookieStorage),
-    }
-  )
-);</code></pre>
-          </section>
-
-          <section>
-            <h3>Demo: State Persistence</h3>
-            <div class="content-columns">
-              <div>
-                <h4>URL State</h4>
-                <ul>
-                  <li>Shareable</li>
-                  <li>Always accessible</li>
-                  <li>Limited space</li>
-                  <li>Visible in address bar</li>
-                </ul>
-              </div>
-              <div>
-                <h4>Cookie State</h4>
-                <ul>
-                  <li>Persists between sessions</li>
-                  <li>More storage space</li>
-                  <li>Private data</li>
-                  <li>Complex data structures</li>
-                </ul>
-              </div>
+            <h3>Demo: ShadCN Form</h3>
+            <div class="demo-placeholder">
+              <p>[Live Demo: ShadCN Form]</p>
             </div>
           </section>
         </section>
+
 
         <!-- Animations - Step 6 -->
         <section>
@@ -663,7 +566,7 @@ const updateUrlParams = (data) => {
 
           <section>
             <h3>Animated Error Messages</h3>
-            <pre><code class="language-jsx">import { motion, AnimatePresence } from 'framer-motion';
+            <pre><code class="language-jsx">import { motion, AnimatePresence } from 'motion/react';
 
 {/* Animated error message */}
 &lt;AnimatePresence mode="wait"&gt;
@@ -772,11 +675,11 @@ const itemVariants = {
   &lt;motion.div variants={itemVariants}&gt;
     {/* Email field */}
   &lt;/motion.div&gt;
-  
+
   &lt;motion.div variants={itemVariants}&gt;
     {/* Password field */}
   &lt;/motion.div&gt;
-  
+
   &lt;motion.div variants={itemVariants}&gt;
     {/* Submit button */}
   &lt;/motion.div&gt;
@@ -792,6 +695,8 @@ const itemVariants = {
           </section>
         </section>
 
+
+        
         <!-- Multi-step Forms - Step 7 -->
         <section>
           <section>
@@ -1011,8 +916,8 @@ export const useFormStore = create&lt;FormState&gt;()(
               <li class="fragment">Make recovery from errors easy</li>
               <li class="fragment">Accessibility is not optional</li>
             </ul>
-            <div class="image-placeholder fragment">
-              <p>[Insert happy user GIF]</p>
+            <div class="fragment">
+              <iframe src="https://giphy.com/embed/XreQmk7ETCak0" width="480" height="360" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/retro-thumbs-up-XreQmk7ETCak0">via GIPHY</a></p>
             </div>
           </section>
           
@@ -1029,12 +934,17 @@ export const useFormStore = create&lt;FormState&gt;()(
         <section>
           <h2>Questions?</h2>
           <p>
-            <a href="https://github.com/sergical/delightful-forms">
-              github.com/sergical/delightful-forms
+            <a href="https://x.com/sergedottech">
+              x.com/sergedottech
             </a>
           </p>
-          <div class="image-placeholder">
-            <p>[Insert funny form-related GIF]</p>
+          <div>
+            <p>
+              <a href="https://github.com/sergical/delightful-forms">
+                github.com/sergical/delightful-forms
+              </a>
+            </p>
+            <img src="images/github.png" alt="QR Code" style="max-width: 200px; filter: invert(1);">
           </div>
         </section>
       </div>
