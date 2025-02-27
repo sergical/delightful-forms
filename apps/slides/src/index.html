@@ -15,6 +15,84 @@
           <h3>A Journey from Basic to Beautiful</h3>
           <p>Building better form experiences in React</p>
         </section>
+        
+        <!-- About Me -->
+        <section>
+          <h2>About Me</h2>
+          <div class="content-columns">
+            <div>
+              <ul>
+                <li>Software Engineer at Acctual</li>
+                <li>Building finance tools for the modern web</li>
+                <li>Working with React, TypeScript, and NextJS</li>
+                <li>Form enthusiast (it's a thing!)</li>
+              </ul>
+            </div>
+            <div>
+              <p>Projects:</p>
+              <ul>
+                <li><a href="https://cryptoinvoice.new" target="_blank">cryptoinvoice.new</a></li>
+                <li><a href="https://acctual.com" target="_blank">acctual.com</a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Forms in the Wild -->
+        <section>
+          <section>
+            <h2>Forms in the Wild</h2>
+            <div class="image-placeholder">
+              <p>[Insert collage of various forms from popular websites]</p>
+            </div>
+          </section>
+          
+          <section>
+            <h3>The Evolution of Interfaces</h3>
+            <div class="content-columns">
+              <div>
+                <h4>Traditional Forms</h4>
+                <ul>
+                  <li>Multiple fields</li>
+                  <li>Complex validations</li>
+                  <li>Multi-step flows</li>
+                  <li>Structured data entry</li>
+                </ul>
+                <div class="image-placeholder">
+                  <p>[Insert complex form screenshot]</p>
+                </div>
+              </div>
+              <div>
+                <h4>AI Chat Interfaces</h4>
+                <ul>
+                  <li>Single text input</li>
+                  <li>Natural language</li>
+                  <li>Conversational UI</li>
+                  <li>Unstructured data entry</li>
+                </ul>
+                <div class="image-placeholder">
+                  <p>[Insert ChatGPT/Claude interface]</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <section>
+            <h3>The Reality</h3>
+            <ul>
+              <li class="fragment">AI interfaces are transforming interaction patterns</li>
+              <li class="fragment">But most applications still rely on structured data</li>
+              <li class="fragment">Forms remain essential for:</li>
+              <ul>
+                <li class="fragment">E-commerce checkout</li>
+                <li class="fragment">Account creation</li>
+                <li class="fragment">Business applications</li>
+                <li class="fragment">Financial transactions</li>
+              </ul>
+            </ul>
+            <p class="fragment">We need to make these experiences better!</p>
+          </section>
+        </section>
 
         <!-- Common Form Problems -->
         <section>
@@ -60,6 +138,41 @@
               </div>
             </div>
           </section>
+          
+          <section>
+            <h3>Tax Filing Software</h3>
+            <div class="content-columns">
+              <div>
+                <ul>
+                  <li>Overwhelming complexity</li>
+                  <li>Confusing navigation</li>
+                  <li>Technical jargon</li>
+                  <li>Fear-inducing messaging</li>
+                </ul>
+              </div>
+              <div class="image-placeholder">
+                <p>[Insert tax software screenshot]</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3>Financial Applications</h3>
+            <div class="content-columns">
+              <div>
+                <ul>
+                  <li>Excessive security measures</li>
+                  <li>Authentication frustrations</li>
+                  <li>Data entry without context</li>
+                  <li>Cryptic error messages</li>
+                </ul>
+              </div>
+              <div class="image-placeholder">
+                <p>[Insert banking form screenshot]</p>
+              </div>
+            </div>
+            <p class="fragment">These are the challenges we face at Acctual</p>
+          </section>
 
           <section>
             <h3>Common Anti-patterns</h3>
@@ -68,6 +181,7 @@
               <li class="fragment">Unclear requirements until submission</li>
               <li class="fragment">No feedback during submission</li>
               <li class="fragment">Losing state on navigation</li>
+              <li class="fragment">Friction when users need help most</li>
             </ul>
             <div class="image-placeholder fragment">
               <p>[Insert funny error message GIF]</p>
@@ -79,129 +193,275 @@
         <section>
           <section>
             <h2>1. Basic Forms with Server Actions</h2>
-            <h4>The Foundation</h4>
+            <h4>Starting with a simple login form</h4>
+            <div class="image-placeholder">
+              <p>[Insert email/password form similar to the example image]</p>
+            </div>
           </section>
 
           <section>
-            <h3>HTML Form</h3>
-            <pre><code class="language-jsx">&lt;form action={submitForm}&gt;
+            <h3>Basic HTML Form</h3>
+            <pre><code class="language-jsx">&lt;form action={handleSignIn}&gt;
   &lt;div&gt;
-    &lt;label htmlFor="name"&gt;Name&lt;/label&gt;
-    &lt;input type="text" id="name" name="name" required /&gt;
+    &lt;label htmlFor="email"&gt;Email address&lt;/label&gt;
+    &lt;input 
+      type="email" 
+      id="email" 
+      name="email" 
+      required 
+    /&gt;
   &lt;/div&gt;
   
   &lt;div&gt;
-    &lt;label htmlFor="email"&gt;Email&lt;/label&gt;
-    &lt;input type="email" id="email" name="email" required /&gt;
+    &lt;label htmlFor="password"&gt;Password&lt;/label&gt;
+    &lt;input 
+      type="password" 
+      id="password" 
+      name="password" 
+      required 
+    /&gt;
   &lt;/div&gt;
   
-  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+  &lt;button type="submit"&gt;Continue&lt;/button&gt;
 &lt;/form&gt;</code></pre>
           </section>
 
           <section>
-            <h3>Server Actions</h3>
+            <h3>Server Action</h3>
             <pre><code class="language-typescript">'use server';
 
-export async function submitForm(formData: FormData) {
+export async function handleSignIn(formData: FormData) {
   // Simulate server delay
   await new Promise(resolve => setTimeout(resolve, 1500));
   
   // Extract form data
-  const name = formData.get('name') as string;
   const email = formData.get('email') as string;
+  const password = formData.get('password') as string;
   
   // Simple validation
-  if (!name || !email) {
-    return { error: 'All fields are required' };
+  if (!email || !password) {
+    return { error: 'Email and password are required' };
   }
   
-  // Process the submission
-  console.log('Form submitted:', { name, email });
+  // Authentication logic would go here
+  console.log('Authentication attempt:', { email });
   
-  // Redirect to success page
-  redirect('/success');
+  // Redirect to dashboard
+  redirect('/dashboard');
 }</code></pre>
           </section>
 
           <section>
             <h3>Demo: Basic Form</h3>
             <div class="demo-placeholder">
-              <p>[Live Demo: Basic Form]</p>
+              <p>[Live Demo: Basic Sign In Form]</p>
             </div>
-            <p class="fragment">Works without JavaScript!</p>
-            <p class="fragment">But the UX is minimal...</p>
+            <p class="fragment">✅ Works without JavaScript!</p>
+            <p class="fragment">✅ Simple and functional</p>
+            <p class="fragment">❌ But creates a poor user experience...</p>
           </section>
         </section>
 
-        <!-- Schema Validation - Step 2 -->
+        <!-- Multiple Submissions Problem - Step 2 -->
         <section>
           <section>
-            <h2>2. Schema Validation with Zod</h2>
+            <h2>2. The Multiple Submissions Problem</h2>
+            <h4>What happens without disabling inputs?</h4>
+          </section>
+          
+          <section>
+            <h3>The Problem</h3>
+            <ul>
+              <li class="fragment">Users can click the submit button multiple times</li>
+              <li class="fragment">Each click creates a new server request</li>
+              <li class="fragment">Can lead to duplicate transactions</li>
+              <li class="fragment">Creates unnecessary server load</li>
+              <li class="fragment">Users have no feedback that their submission is processing</li>
+            </ul>
+            <div class="image-placeholder fragment">
+              <p>[Insert GIF of someone clicking a submit button repeatedly]</p>
+            </div>
+          </section>
+          
+          <section>
+            <h3>Demo: Multiple Submissions</h3>
+            <div class="demo-placeholder">
+              <p>[Live Demo: Showing multiple form submissions]</p>
+            </div>
+            <p class="fragment">Check the network tab - multiple requests!</p>
+          </section>
+        </section>
+        
+        <!-- Fieldset Solution - Step 3 -->
+        <section>
+          <section>
+            <h2>3. Using Fieldset to Prevent Multiple Submissions</h2>
+            <h4>A simple HTML solution</h4>
+          </section>
+          
+          <section>
+            <h3>The Fieldset Solution</h3>
+            <pre><code class="language-jsx">&lt;form action={handleSignIn}&gt;
+  &lt;fieldset disabled={isPending}&gt;
+    &lt;div&gt;
+      &lt;label htmlFor="email"&gt;Email address&lt;/label&gt;
+      &lt;input type="email" id="email" name="email" required /&gt;
+    &lt;/div&gt;
+    
+    &lt;div&gt;
+      &lt;label htmlFor="password"&gt;Password&lt;/label&gt;
+      &lt;input type="password" id="password" name="password" required /&gt;
+    &lt;/div&gt;
+    
+    &lt;button type="submit"&gt;
+      {isPending ? 'Signing in...' : 'Continue'}
+    &lt;/button&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;</code></pre>
+          </section>
+          
+          <section>
+            <h3>Using useFormStatus</h3>
+            <pre><code class="language-jsx">import { useFormStatus } from 'react-dom';
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  
+  return (
+    &lt;button 
+      type="submit" 
+      disabled={pending}
+      className="w-full"
+    &gt;
+      {pending ? 'Signing in...' : 'Continue'}
+    &lt;/button&gt;
+  );
+}</code></pre>
+          </section>
+          
+          <section>
+            <h3>Demo: Fieldset Prevention</h3>
+            <div class="demo-placeholder">
+              <p>[Live Demo: Form with fieldset prevention]</p>
+            </div>
+            <p class="fragment">✅ Prevents multiple submissions</p>
+            <p class="fragment">✅ Provides visual feedback</p>
+            <p class="fragment">✅ Works with progressive enhancement</p>
+          </section>
+        </section>
+        
+        <!-- Schema Validation - Step 4 -->
+        <section>
+          <section>
+            <h2>4. Schema Validation with Zod</h2>
             <h4>Type-safe validation</h4>
           </section>
 
           <section>
-            <h3>Define the Schema</h3>
+            <h3>Define the Authentication Schema</h3>
             <pre><code class="language-typescript">import { z } from 'zod';
 
-export const contactSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Invalid email address'),
-  message: z.string().min(10, 'Message must be at least 10 characters'),
+export const signInSchema = z.object({
+  email: z
+    .string()
+    .email('Please enter a valid email address')
+    .min(1, 'Email is required'),
+  password: z
+    .string()
+    .min(8, 'Password must be at least 8 characters')
+    .regex(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/,
+      'Password must contain at least one uppercase letter, one lowercase letter, and one number'
+    ),
 });</code></pre>
           </section>
 
           <section>
             <h3>Server-side Validation</h3>
-            <pre><code class="language-typescript">try {
-  const validatedData = contactSchema.parse(formValues);
-  // Process the valid submission
-  return { status: 'success' };
-} catch (error) {
-  if (error instanceof z.ZodError) {
-    const errors = error.errors.reduce((acc, curr) => {
-      const path = curr.path[0] as string;
-      acc[path] = curr.message;
-      return acc;
-    }, {} as Record<string, string>);
-    
-    return { errors, status: 'error' };
+            <pre><code class="language-typescript">'use server';
+
+async function handleSignIn(formData: FormData) {
+  // Simulate server delay
+  await new Promise(resolve => setTimeout(resolve, 1500));
+  
+  const formValues = {
+    email: formData.get('email'),
+    password: formData.get('password'),
+  };
+  
+  try {
+    const validatedData = signInSchema.parse(formValues);
+    // Authentication logic would go here
+    return { success: true };
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      const errors = error.errors.reduce((acc, curr) => {
+        const path = curr.path[0] as string;
+        acc[path] = curr.message;
+        return acc;
+      }, {} as Record<string, string>);
+      
+      return { errors, success: false };
+    }
+    return { error: 'Authentication failed', success: false };
   }
 }</code></pre>
           </section>
 
           <section>
-            <h3>Client-side Feedback</h3>
-            <pre><code class="language-jsx">&lt;div&gt;
-  &lt;label htmlFor="email"&gt;Email&lt;/label&gt;
-  &lt;input
-    type="email"
-    id="email"
-    name="email"
-    className={errors?.email ? 'border-red-500' : ''}
-  /&gt;
-  {errors?.email && (
-    &lt;p className="text-red-600"&gt;{errors.email}&lt;/p&gt;
-  )}
-&lt;/div&gt;</code></pre>
+            <h3>Client-side Error Display</h3>
+            <pre><code class="language-jsx">'use client';
+
+import { useFormState } from 'react-dom';
+
+// Initial state for the form
+const initialState = { errors: {}, success: false };
+
+export default function SignInForm() {
+  const [state, formAction] = useFormState(handleSignIn, initialState);
+  
+  return (
+    &lt;form action={formAction}&gt;
+      &lt;fieldset disabled={isPending}&gt;
+        &lt;div&gt;
+          &lt;label htmlFor="email"&gt;Email address&lt;/label&gt;
+          &lt;input
+            type="email"
+            id="email"
+            name="email"
+            className={state.errors?.email ? 'border-red-500' : ''}
+          /&gt;
+          {state.errors?.email && (
+            &lt;p className="text-red-600 text-sm mt-1"&gt;{state.errors.email}&lt;/p&gt;
+          )}
+        &lt;/div&gt;
+        
+        {/* Password field with similar validation display */}
+        
+        &lt;SubmitButton /&gt;
+      &lt;/fieldset&gt;
+    &lt;/form&gt;
+  );
+}</code></pre>
           </section>
 
           <section>
-            <h3>Demo: Validated Form</h3>
+            <h3>Demo: Validated Login Form</h3>
             <div class="demo-placeholder">
-              <p>[Live Demo: Zod Validation]</p>
+              <p>[Live Demo: Sign In Form with Zod Validation]</p>
             </div>
-            <div class="image-placeholder fragment">
-              <p>[Insert validation GIF]</p>
-            </div>
+            <ul>
+              <li class="fragment">✅ Real-time error feedback</li>
+              <li class="fragment">✅ Password strength requirements</li>
+              <li class="fragment">✅ Type-safe validation on client and server</li>
+            </ul>
           </section>
         </section>
 
-        <!-- Form Management - Step 3 -->
+        <!-- Form Management - Step 5 -->
         <section>
           <section>
-            <h2>3. Form State Management</h2>
+            <h2>5. Enhanced Form Management</h2>
             <h4>React Hook Form</h4>
           </section>
 
@@ -209,18 +469,29 @@ export const contactSchema = z.object({
             <h3>React Hook Form + Zod</h3>
             <pre><code class="language-typescript">import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { signInSchema, SignInValues } from './schema';
 
-export default function ContactForm() {
+export default function SignInForm() {
   const { 
     register, 
     handleSubmit, 
     formState: { errors, isSubmitting } 
-  } = useForm&lt;ContactFormValues&gt;({
-    resolver: zodResolver(contactSchema)
+  } = useForm&lt;SignInValues&gt;({
+    resolver: zodResolver(signInSchema),
+    mode: 'onChange' // Validate on change for better UX
   });
 
-  const onSubmit = async (data: ContactFormValues) => {
-    // Handle submission
+  const onSubmit = async (data: SignInValues) => {
+    // Sign in logic here
+    try {
+      await signIn(data.email, data.password);
+      router.push('/dashboard');
+    } catch (error) {
+      setError('root', { 
+        type: 'manual',
+        message: 'Invalid email or password' 
+      });
+    }
   };
 
   return (
@@ -232,16 +503,64 @@ export default function ContactForm() {
           </section>
 
           <section>
+            <h3>Input Registration</h3>
+            <pre><code class="language-jsx">&lt;div&gt;
+  &lt;label htmlFor="email"&gt;Email address&lt;/label&gt;
+  &lt;input
+    id="email"
+    type="email"
+    className={errors.email ? 'border-red-500' : ''}
+    {...register('email')}
+  /&gt;
+  {errors.email && (
+    &lt;p className="text-red-600 text-sm mt-1"&gt;
+      {errors.email.message}
+    &lt;/p&gt;
+  )}
+&lt;/div&gt;
+
+&lt;div&gt;
+  &lt;label htmlFor="password"&gt;Password&lt;/label&gt;
+  &lt;div className="relative"&gt;
+    &lt;input
+      id="password"
+      type={showPassword ? 'text' : 'password'}
+      className={errors.password ? 'border-red-500' : ''}
+      {...register('password')}
+    /&gt;
+    &lt;button 
+      type="button"
+      onClick={() => setShowPassword(!showPassword)}
+      className="absolute right-3 top-1/2 transform -translate-y-1/2"
+    &gt;
+      {showPassword ? &lt;EyeOff size={18} /&gt; : &lt;Eye size={18} /&gt;}
+    &lt;/button&gt;
+  &lt;/div&gt;
+  {errors.password && (
+    &lt;p className="text-red-600 text-sm mt-1"&gt;
+      {errors.password.message}
+    &lt;/p&gt;
+  )}
+&lt;/div&gt;</code></pre>
+          </section>
+
+          <section>
             <h3>Benefits</h3>
             <ul>
-              <li class="fragment">Real-time validation</li>
-              <li class="fragment">Focused rerenders</li>
-              <li class="fragment">Form state management</li>
-              <li class="fragment">Submission handling</li>
+              <li class="fragment">✅ Real-time validation as you type</li>
+              <li class="fragment">✅ Focused rerenders for better performance</li>
+              <li class="fragment">✅ Form state management (touched, dirty, etc.)</li>
+              <li class="fragment">✅ Error handling and display</li>
+              <li class="fragment">✅ Custom validation rules</li>
             </ul>
-            <div class="image-placeholder fragment">
-              <p>[Insert hook form GIF]</p>
+          </section>
+          
+          <section>
+            <h3>Demo: React Hook Form</h3>
+            <div class="demo-placeholder">
+              <p>[Live Demo: Sign In with React Hook Form]</p>
             </div>
+            <p class="fragment">Notice the improved user experience!</p>
           </section>
         </section>
 
@@ -338,25 +657,26 @@ const updateUrlParams = (data) => {
           </section>
         </section>
 
-        <!-- Animations - Step 5 -->
+        <!-- Animations - Step 6 -->
         <section>
           <section>
-            <h2>5. Animations</h2>
-            <h4>Framer Motion</h4>
+            <h2>6. Animations</h2>
+            <h4>Using Framer Motion for delightful feedback</h4>
           </section>
 
           <section>
-            <h3>Error Messages</h3>
+            <h3>Animated Error Messages</h3>
             <pre><code class="language-jsx">import { motion, AnimatePresence } from 'framer-motion';
 
 {/* Animated error message */}
-&lt;AnimatePresence&gt;
+&lt;AnimatePresence mode="wait"&gt;
   {errors.email && (
     &lt;motion.p
       initial={{ height: 0, opacity: 0 }}
       animate={{ height: 'auto', opacity: 1 }}
       exit={{ height: 0, opacity: 0 }}
-      className="text-red-500"
+      transition={{ duration: 0.2 }}
+      className="text-red-500 text-sm mt-1"
     &gt;
       {errors.email.message}
     &lt;/motion.p&gt;
@@ -365,45 +685,206 @@ const updateUrlParams = (data) => {
           </section>
 
           <section>
-            <h3>Submit Button</h3>
-            <pre><code class="language-jsx">{/* Animated submit button */}
-&lt;motion.button
+            <h3>Animated Submit Button</h3>
+            <pre><code class="language-jsx">&lt;motion.button
+  type="submit"
+  whileHover={{ scale: 1.02 }}
   whileTap={{ scale: 0.98 }}
-  className="submit-button"
+  className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md"
   disabled={isSubmitting}
 &gt;
   {isSubmitting ? (
-    &lt;&gt;
+    &lt;motion.div
+      className="flex items-center justify-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    &gt;
       &lt;Loader2 className="mr-2 h-4 w-4 animate-spin" /&gt;
-      Submitting...
-    &lt;/&gt;
+      Signing in...
+    &lt;/motion.div&gt;
   ) : (
-    'Submit'
+    'Continue'
   )}
 &lt;/motion.button&gt;</code></pre>
           </section>
+          
+          <section>
+            <h3>Password Visibility Toggle</h3>
+            <pre><code class="language-jsx">&lt;div className="relative"&gt;
+  &lt;input
+    id="password"
+    type={showPassword ? 'text' : 'password'}
+    className={errors.password ? 'border-red-500' : ''}
+    {...register('password')}
+  /&gt;
+  &lt;motion.button 
+    type="button"
+    onClick={() => setShowPassword(!showPassword)}
+    whileHover={{ scale: 1.1 }}
+    whileTap={{ scale: 0.9 }}
+    className="absolute right-3 top-1/2 transform -translate-y-1/2"
+  &gt;
+    &lt;AnimatePresence mode="wait" initial={false}&gt;
+      {showPassword ? (
+        &lt;motion.div
+          key="eyeOff"
+          initial={{ opacity: 0, y: 5 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -5 }}
+          transition={{ duration: 0.15 }}
+        &gt;
+          &lt;EyeOff size={18} /&gt;
+        &lt;/motion.div&gt;
+      ) : (
+        &lt;motion.div
+          key="eye"
+          initial={{ opacity: 0, y: 5 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -5 }}
+          transition={{ duration: 0.15 }}
+        &gt;
+          &lt;Eye size={18} /&gt;
+        &lt;/motion.div&gt;
+      )}
+    &lt;/AnimatePresence&gt;
+  &lt;/motion.button&gt;
+&lt;/div&gt;</code></pre>
+          </section>
 
           <section>
-            <h3>Demo: Animated Form</h3>
+            <h3>Form Success Animation</h3>
+            <pre><code class="language-jsx">const formVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+};
+
+&lt;motion.form
+  variants={formVariants}
+  initial="hidden"
+  animate="visible"
+  onSubmit={handleSubmit(onSubmit)}
+&gt;
+  &lt;motion.div variants={itemVariants}&gt;
+    {/* Email field */}
+  &lt;/motion.div&gt;
+  
+  &lt;motion.div variants={itemVariants}&gt;
+    {/* Password field */}
+  &lt;/motion.div&gt;
+  
+  &lt;motion.div variants={itemVariants}&gt;
+    {/* Submit button */}
+  &lt;/motion.div&gt;
+&lt;/motion.form&gt;</code></pre>
+          </section>
+
+          <section>
+            <h3>Demo: Animated Sign-In Form</h3>
             <div class="demo-placeholder">
-              <p>[Live Demo: Animations]</p>
+              <p>[Live Demo: Fully Animated Sign-In Form]</p>
             </div>
-            <div class="image-placeholder fragment">
-              <p>[Insert animation GIF]</p>
-            </div>
+            <p class="fragment">The small details make a huge difference!</p>
           </section>
         </section>
 
-        <!-- Multi-step Forms - Step 6 -->
+        <!-- Multi-step Forms - Step 7 -->
         <section>
           <section>
-            <h2>6. Multi-step Forms</h2>
-            <h4>With persistent state</h4>
+            <h2>7. Multi-step Forms with Zustand</h2>
+            <h4>Extending to more complex flows</h4>
           </section>
 
           <section>
-            <h3>Step Management</h3>
-            <pre><code class="language-typescript">export default function MultiStepForm() {
+            <h3>From Login to Complete User Registration</h3>
+            <div class="content-columns">
+              <div>
+                <p>A full account creation requires:</p>
+                <ul>
+                  <li>Email/Password creation</li>
+                  <li>User information</li>
+                  <li>Preferences</li>
+                  <li>Verification</li>
+                  <li>Etc.</li>
+                </ul>
+              </div>
+              <div class="image-placeholder">
+                <p>[Insert multi-step form flow diagram]</p>
+              </div>
+            </div>
+            <p class="fragment">How do we preserve state across steps?</p>
+          </section>
+          
+          <section>
+            <h3>Zustand + Local Storage</h3>
+            <pre><code class="language-typescript">import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+
+type FormState = {
+  currentStep: number;
+  formData: {
+    email: string;
+    password: string;
+    name: string;
+    // Other fields
+  };
+  
+  // Actions
+  setField: (field: string, value: any) => void;
+  nextStep: () => void;
+  prevStep: () => void;
+  resetForm: () => void;
+};
+
+export const useFormStore = create&lt;FormState&gt;()(
+  persist(
+    (set) => ({
+      currentStep: 0,
+      formData: {
+        email: '',
+        password: '',
+        name: '',
+      },
+      
+      setField: (field, value) => 
+        set((state) => ({ 
+          formData: { ...state.formData, [field]: value } 
+        })),
+      
+      nextStep: () => 
+        set((state) => ({ 
+          currentStep: state.currentStep + 1 
+        })),
+      
+      prevStep: () => 
+        set((state) => ({ 
+          currentStep: state.currentStep - 1 
+        })),
+      
+      resetForm: () => 
+        set(() => ({ 
+          currentStep: 0,
+          formData: { email: '', password: '', name: '' }
+        })),
+    }),
+    {
+      name: 'registration-form',
+      // Using localStorage for persistence
+    }
+  )
+);</code></pre>
+          </section>
+
+          <section>
+            <h3>Multi-step Registration Flow</h3>
+            <pre><code class="language-jsx">export default function RegistrationFlow() {
   // Use our Zustand store for persistent state
   const [
     currentStep, 
@@ -419,47 +900,82 @@ const updateUrlParams = (data) => {
   
   // Define steps with components
   const steps = [
-    &lt;PersonalInfoStep next={nextStep} /&gt;,
-    &lt;MessageStep prev={prevStep} next={nextStep} /&gt;,
-    &lt;ReviewStep prev={prevStep} submit={submitForm} /&gt;
+    &lt;EmailPasswordStep /&gt;,
+    &lt;UserInfoStep /&gt;,
+    &lt;PreferencesStep /&gt;,
+    &lt;ReviewStep /&gt;
   ];
   
   return (
-    &lt;div&gt;
+    &lt;div className="max-w-md mx-auto my-8 p-6 bg-white rounded-lg shadow-md"&gt;
       &lt;FormProgress currentStep={currentStep} totalSteps={steps.length} /&gt;
-      {steps[currentStep]}
+      
+      &lt;AnimatePresence mode="wait"&gt;
+        &lt;motion.div
+          key={currentStep}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -20 }}
+          transition={{ duration: 0.3 }}
+        &gt;
+          {steps[currentStep]}
+        &lt;/motion.div&gt;
+      &lt;/AnimatePresence&gt;
     &lt;/div&gt;
   );
 }</code></pre>
           </section>
-
+          
           <section>
-            <h3>Progress Indicator</h3>
-            <pre><code class="language-jsx">function FormProgress({ currentStep, totalSteps }) {
+            <h3>Step Component Example</h3>
+            <pre><code class="language-jsx">function EmailPasswordStep() {
+  const [formData, setField, nextStep] = useFormStore(
+    state => [state.formData, state.setField, state.nextStep]
+  );
+  
+  const form = useForm({
+    resolver: zodResolver(emailPasswordSchema),
+    defaultValues: {
+      email: formData.email,
+      password: formData.password
+    }
+  });
+  
+  const onSubmit = (data) => {
+    // Save to Zustand store
+    setField('email', data.email);
+    setField('password', data.password);
+    
+    // Move to next step
+    nextStep();
+  };
+  
   return (
-    &lt;div className="mb-6"&gt;
-      &lt;div className="flex justify-between text-sm mb-1"&gt;
-        &lt;span&gt;Step {currentStep + 1} of {totalSteps}&lt;/span&gt;
-        &lt;span&gt;{Math.round(((currentStep + 1) / totalSteps) * 100)}% Complete&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;div className="w-full bg-gray-200 h-2 rounded-full"&gt;
-        &lt;div 
-          className="bg-blue-500 h-2 rounded-full transition-all duration-300"
-          style={{ width: `${((currentStep + 1) / totalSteps) * 100}%` }}
-        &gt;&lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+    &lt;form onSubmit={form.handleSubmit(onSubmit)}&gt;
+      {/* Form fields */}
+      &lt;Button type="submit"&gt;Continue&lt;/Button&gt;
+    &lt;/form&gt;
   );
 }</code></pre>
           </section>
 
           <section>
-            <h3>Demo: Multi-step Form</h3>
+            <h3>Key Benefits</h3>
+            <ul>
+              <li class="fragment">✅ State persists if user closes browser</li>
+              <li class="fragment">✅ Can resume registration process later</li>
+              <li class="fragment">✅ Centralized state management</li>
+              <li class="fragment">✅ Easy to add/remove steps</li>
+              <li class="fragment">✅ Smooth transitions between steps</li>
+            </ul>
+          </section>
+          
+          <section>
+            <h3>Demo: Multi-step Registration</h3>
             <div class="demo-placeholder">
-              <p>[Live Demo: Multi-step Form]</p>
+              <p>[Live Demo: Multi-step Registration with Zustand]</p>
             </div>
-            <p class="fragment">Persistent state across steps</p>
-            <p class="fragment">Resume where you left off</p>
+            <p class="fragment">Try refreshing the page - your data is still there!</p>
           </section>
         </section>
 
@@ -468,13 +984,25 @@ const updateUrlParams = (data) => {
           <section>
             <h2>Key Takeaways</h2>
             <ul>
-              <li class="fragment">Progressive enhancement ensures forms work for everyone</li>
-              <li class="fragment">Zod provides type-safe validation on client and server</li>
-              <li class="fragment">React Hook Form improves UX and performance</li>
-              <li class="fragment">State persistence strategies depend on your needs</li>
-              <li class="fragment">Animations provide helpful feedback</li>
-              <li class="fragment">Multi-step forms need careful state management</li>
+              <li class="fragment">Start with basic HTML forms - they work without JavaScript</li>
+              <li class="fragment">Prevent multiple submissions with simple fieldsets</li>
+              <li class="fragment">Add validation with Zod for type safety</li>
+              <li class="fragment">Enhance with React Hook Form for better UX</li>
+              <li class="fragment">Use animations to provide meaningful feedback</li>
+              <li class="fragment">For complex forms, use Zustand with localStorage</li>
             </ul>
+          </section>
+
+          <section>
+            <h3>Progressive Enhancement Path</h3>
+            <ol>
+              <li class="fragment">Basic Form → Works for everyone</li>
+              <li class="fragment">Fieldset → Prevents multiple submissions</li>
+              <li class="fragment">Zod Validation → Ensures data integrity</li>
+              <li class="fragment">React Hook Form → Improves user experience</li>
+              <li class="fragment">Animations → Adds delight and feedback</li>
+              <li class="fragment">Zustand → Extends to complex multi-step flows</li>
+            </ol>
           </section>
 
           <section>
@@ -489,6 +1017,14 @@ const updateUrlParams = (data) => {
             <div class="image-placeholder fragment">
               <p>[Insert happy user GIF]</p>
             </div>
+          </section>
+          
+          <section>
+            <h3>Remember</h3>
+            <blockquote class="fragment">
+              "A form is a conversation with your user, not an interrogation."
+            </blockquote>
+            <p class="fragment">Make every form interaction a delight, not a chore.</p>
           </section>
         </section>
 
