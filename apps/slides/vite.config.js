@@ -3,13 +3,16 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   root: "src",
+  publicDir: "../public",
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),
     },
   },
   build: {
-    // Optimize chunk size
+    assetsDir: "assets",
+    outDir: "../dist",
+    emptyOutDir: true,
     chunkSizeWarningLimit: 500,
     rollupOptions: {
       output: {
@@ -18,7 +21,6 @@ export default defineConfig({
         },
       },
     },
-    // Improve build performance
     target: "esnext",
     minify: "terser",
   },

@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Delightful Forms: A Journey from Basic to Beautiful</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="reveal">
@@ -21,19 +23,14 @@
           <h2>About Me</h2>
           <div class="content-columns">
             <div>
-              <ul>
-                <li>Software Engineer at Acctual</li>
-                <li>Building finance tools for the modern web</li>
-                <li>Working with React, TypeScript, and NextJS</li>
-                <li>Form enthusiast (it's a thing!)</li>
-              </ul>
-            </div>
-            <div>
               <p>Projects:</p>
               <ul>
                 <li><a href="https://cryptoinvoice.new" target="_blank">cryptoinvoice.new</a></li>
                 <li><a href="https://acctual.com" target="_blank">acctual.com</a></li>
               </ul>
+            </div>
+            <div class="avatar-container">
+              <img src="images/sergical.jpg" alt="Sergiy Dybskiy" class="avatar">
             </div>
           </div>
         </section>
@@ -42,9 +39,7 @@
         <section>
           <section>
             <h2>Forms in the Wild</h2>
-            <div class="image-placeholder">
-              <p>[Insert collage of various forms from popular websites]</p>
-            </div>
+            <img src="images/v0.png" alt="Forms Evolution" style="max-width: 80%;">
           </section>
           
           <section>
@@ -58,9 +53,7 @@
                   <li>Multi-step flows</li>
                   <li>Structured data entry</li>
                 </ul>
-                <div class="image-placeholder">
-                  <p>[Insert complex form screenshot]</p>
-                </div>
+                <img src="images/quickbooks.gif" alt="Traditional Form Example" style="max-width: 100%; margin-top: 1rem;">
               </div>
               <div>
                 <h4>AI Chat Interfaces</h4>
@@ -70,9 +63,7 @@
                   <li>Conversational UI</li>
                   <li>Unstructured data entry</li>
                 </ul>
-                <div class="image-placeholder">
-                  <p>[Insert ChatGPT/Claude interface]</p>
-                </div>
+                <img src="images/chatgpt.png" alt="AI Chat Interface" style="max-width: 100%; margin-top: 1rem;">
               </div>
             </div>
           </section>
@@ -335,8 +326,7 @@ function SubmitButton() {
     &gt;
       {pending ? 'Signing in...' : 'Continue'}
     &lt;/button&gt;
-  );
-}</code></pre>
+  );}</code></pre>
           </section>
           
           <section>
