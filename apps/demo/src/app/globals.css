@@ -1,21 +1,10 @@
 @import "tailwindcss";
 
-@import "./brutalist.css" layer(utilities);
-
 @plugin 'tailwindcss-animate';
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Brutalist Theme Variables */
-  --brutalist-border-width: 2px;
-  --brutalist-shadow-sm: 4px 4px 0;
-  --brutalist-shadow-md: 6px 6px 0;
-  --brutalist-shadow-lg: 8px 8px 0;
-  --brutalist-shadow-color: rgba(0, 0, 0, 1);
-  --brutalist-error-color: #ff0000;
-  --brutalist-transition: all 0.1s ease-in-out;
-
   /* Original Theme Variables */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -57,10 +46,6 @@
 */
 
 .dark {
-  /* Brutalist Dark Theme Overrides */
-  --brutalist-shadow-color: rgba(255, 255, 255, 0.9);
-  --brutalist-error-color: #ff4444;
-
   /* Original Dark Theme Variables */
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -96,7 +81,9 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
-@theme inline {
+@theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -133,4 +120,13 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }

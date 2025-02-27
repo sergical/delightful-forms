@@ -4,6 +4,9 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useTransition } from "react";
 import { FormStatus } from "../../../components/form-status";
+import { Button } from "../../../components/ui/button";
+import { Input } from "../../../components/ui/input";
+import { Label } from "../../../components/ui/label";
 
 export default function URLStateForm() {
   const router = useRouter();
@@ -27,7 +30,7 @@ export default function URLStateForm() {
       });
       return newSearchParams.toString();
     },
-    [searchParams],
+    [searchParams]
   );
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,7 +46,7 @@ export default function URLStateForm() {
             email: formData.get("email") as string,
             message: formData.get("message") as string,
             status: "submitting",
-          }),
+          })
       );
     });
 
@@ -59,79 +62,68 @@ export default function URLStateForm() {
             email: formData.get("email") as string,
             message: formData.get("message") as string,
             status: "success",
-          }),
+          })
       );
     });
   };
 
   return (
-    <div className="max-w-md mx-auto my-12 p-6 bg-white rounded-lg shadow-md">
+    <div className="max-w-md mx-auto my-12 p-6 bg-card rounded-lg shadow-md">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold mb-2">Contact Form</h1>
-        <p className="text-gray-600">Form with URL-based state management</p>
+        <h1 className="text-2xl font-bold mb-2 text-card-foreground">
+          Contact Form
+        </h1>
+        <p className="text-muted-foreground">
+          Form with URL-based state management
+        </p>
       </div>
 
       <form onSubmit={handleSubmit}>
         <div className="space-y-4">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium mb-1">
-              Name
-            </label>
-            <input
+          <div className="space-y-2">
+            <Label htmlFor="name">Name</Label>
+            <Input
               type="text"
               id="name"
               name="name"
               defaultValue={name}
               required
-              className="w-full p-2 border border-gray-300 rounded-md"
             />
           </div>
 
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium mb-1">
-              Email
-            </label>
-            <input
+          <div className="space-y-2">
+            <Label htmlFor="email">Email</Label>
+            <Input
               type="email"
               id="email"
               name="email"
               defaultValue={email}
               required
-              className="w-full p-2 border border-gray-300 rounded-md"
             />
           </div>
 
-          <div>
-            <label htmlFor="message" className="block text-sm font-medium mb-1">
-              Message
-            </label>
+          <div className="space-y-2">
+            <Label htmlFor="message">Message</Label>
             <textarea
               id="message"
               name="message"
               rows={4}
               defaultValue={message}
               required
-              className="w-full p-2 border border-gray-300 rounded-md"
+              className="w-full min-h-[80px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             />
           </div>
 
           <FormStatus status={status} />
 
-          <button
-            type="submit"
-            disabled={isPending}
-            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors disabled:bg-indigo-400"
-          >
+          <Button type="submit" className="w-full" disabled={isPending}>
             {isPending ? "Submitting..." : "Submit"}
-          </button>
+          </Button>
         </div>
       </form>
 
       <div className="mt-6">
-        <Link
-          href="/"
-          className="text-indigo-600 hover:text-indigo-800 underline"
-        >
+        <Link href="/" className="text-primary hover:text-primary/90 underline">
           ← Back to examples
         </Link>
       </div>

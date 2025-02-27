@@ -3,96 +3,89 @@
 import Link from "next/link";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
+import { Button } from "../../components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../../components/ui/card";
+import { Input } from "../../components/ui/input";
+import { Label } from "../../components/ui/label";
 import { submitForm, type FormState } from "./actions";
 
 function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors disabled:bg-indigo-400"
-    >
+    <Button type="submit" className="w-full" disabled={pending}>
       {pending ? "Submitting..." : "Submit"}
-    </button>
+    </Button>
   );
 }
 
 export default function BasicForm() {
   const [state, formAction] = useActionState<FormState, FormData>(
     submitForm,
-    null,
+    null
   );
 
   return (
-    <div className="max-w-md mx-auto my-12 p-6 bg-white rounded-lg shadow-md">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold mb-2">Contact Form</h1>
-        <p className="text-gray-600">
-          Basic HTML form with NextJS Server Actions
-        </p>
-      </div>
+    <div className="max-w-md mx-auto my-12">
+      <Card>
+        <CardHeader>
+          <CardTitle>Contact Form</CardTitle>
+          <CardDescription>
+            Basic HTML form with NextJS Server Actions
+          </CardDescription>
+        </CardHeader>
 
-      <form action={formAction}>
-        {state?.error && (
-          <div className="mb-4 p-2 text-red-700 bg-red-100 rounded">
-            {state.error}
-          </div>
-        )}
+        <CardContent>
+          <form action={formAction}>
+            {state?.error && (
+              <div className="mb-4 p-2 text-destructive bg-destructive/10 rounded">
+                {state.error}
+              </div>
+            )}
 
-        <div className="space-y-4">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium mb-1">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-          </div>
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="name">Name</Label>
+                <Input type="text" id="name" name="name" required />
+              </div>
 
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium mb-1">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-          </div>
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input type="email" id="email" name="email" required />
+              </div>
 
-          <div>
-            <label htmlFor="message" className="block text-sm font-medium mb-1">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows={4}
-              required
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-          </div>
+              <div className="space-y-2">
+                <Label htmlFor="message">Message</Label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  required
+                  className="w-full min-h-[80px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                />
+              </div>
 
-          <SubmitButton />
-        </div>
-      </form>
+              <SubmitButton />
+            </div>
+          </form>
+        </CardContent>
 
-      <div className="mt-6">
-        <Link
-          href="/"
-          className="text-indigo-600 hover:text-indigo-800 underline"
-        >
-          ← Back to examples
-        </Link>
-      </div>
+        <CardFooter>
+          <Link
+            href="/"
+            className="text-primary hover:text-primary/90 underline"
+          >
+            ← Back to examples
+          </Link>
+        </CardFooter>
+      </Card>
     </div>
   );
 }

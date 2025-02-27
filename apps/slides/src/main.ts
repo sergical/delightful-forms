@@ -3,6 +3,7 @@ import "reveal.js/dist/reveal.css";
 import "reveal.js/dist/theme/black.css";
 import Highlight from "reveal.js/plugin/highlight/highlight";
 import "reveal.js/plugin/highlight/monokai.css";
+import Notes from "reveal.js/plugin/notes/notes";
 
 const deck = new Reveal({
   // Display presentation control arrows
@@ -88,7 +89,7 @@ const deck = new Reveal({
   parallaxBackgroundVertical: null,
 
   // Plugins configuration
-  plugins: [Highlight],
+  plugins: [Highlight, Notes],
 });
 
 deck.initialize();

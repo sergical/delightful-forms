@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
-import { Space_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import { ThemeProvider } from "../components/theme-provider";
 import { ModeToggle } from "../components/theme-toggle";
 import { cn } from "../lib/utils";
 import "./globals.css";
-const spaceMono = Space_Mono({
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
-  weight: ["400", "700"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -23,34 +29,44 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body className={cn(spaceMono.className, "brutalist antialiased")}>
+      <body
+        className={cn(
+          geistSans.variable,
+          geistMono.variable,
+          "antialiased min-h-screen bg-background"
+        )}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <nav className="fixed top-0 left-0 w-full bg-background text-foreground p-4 border-b border-border z-50">
-            <div className="max-w-7xl mx-auto">
-              <div className="flex items-center justify-between">
-                <Link href="/">
-                  <h1 className="text-xl font-bold">Delightful Forms</h1>
-                </Link>
-                <div className="flex items-center gap-2">
-                  <ModeToggle />
-                  <a
+          <div className="flex min-h-screen flex-col">
+            <header className="border-b border-border bg-card">
+              <div className="container flex h-16 items-center justify-between px-4">
+                <div className="flex items-center space-x-4">
+                  <Link href="/" className="flex items-center space-x-3">
+                    <span className="text-xl font-semibold">
+                      Delightful Forms
+                    </span>
+                  </Link>
+                </div>
+                <nav className="flex items-center space-x-6">
+                  <Link
                     href="https://github.com/sergical/delightful-forms"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-muted-foreground"
+                    className="text-sm font-medium hover:text-primary transition-colors"
                   >
                     GitHub
-                  </a>
-                </div>
+                  </Link>
+                  <ModeToggle />
+                </nav>
               </div>
-            </div>
-          </nav>
-          <main className="mt-20 max-w-7xl mx-auto px-4">{children}</main>
+            </header>
+            <main className="flex-1 container py-8 px-4">{children}</main>
+          </div>
         </ThemeProvider>
       </body>
     </html>
