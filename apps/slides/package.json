@@ -9,9 +9,9 @@
     "clean": "rm -rf .turbo node_modules dist"
   },
   "dependencies": {
-    "reveal.js": "^5.0.4"
+    "reveal.js": "^5.1.0"
   },
   "devDependencies": {
-    "vite": "^5.1.4"
+    "vite": "^6.2.0"
   }
 }
