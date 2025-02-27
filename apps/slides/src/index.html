@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delightful Forms: A Journey from Basic to Beautiful</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- Introduction -->
+        <section>
+          <h1>Delightful Forms</h1>
+          <h3>A Journey from Basic to Beautiful</h3>
+          <p>Building better form experiences in React</p>
+        </section>
+
+        <!-- Common Form Problems -->
+        <section>
+          <section>
+            <h2>Common Form Problems</h2>
+            <ul>
+              <li>Poor error handling</li>
+              <li>Confusing validation</li>
+              <li>No loading states</li>
+              <li>Jarring updates</li>
+              <li>Lost data on navigation</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Bad Examples -->
+        <section>
+          <section>
+            <h2>The Bad & The Ugly</h2>
+            <h4>Real-world examples of poor form UX</h4>
+          </section>
+
+          <section>
+            <h3>Airline Booking Forms</h3>
+            <ul>
+              <li>Complex multi-step processes</li>
+              <li>Unclear error messages</li>
+              <li>Session timeouts</li>
+              <li>Lost data on back navigation</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Common Anti-patterns</h3>
+            <ul>
+              <li>Unclear validation rules</li>
+              <li>No field requirements until submission</li>
+              <li>Aggressive form clearing</li>
+              <li>Poor accessibility</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Basic Forms -->
+        <section>
+          <section>
+            <h2>Basic Forms with Server Actions</h2>
+            <h4>The Foundation</h4>
+          </section>
+
+          <section>
+            <h3>Server Actions</h3>
+            <pre><code class="language-typescript">async function handleSubmit(formData: FormData) {
+  'use server'
+  // Process form data
+}</code></pre>
+          </section>
+        </section>
+
+        <!-- Progressive Enhancements -->
+        <section>
+          <section>
+            <h2>Progressive Enhancements</h2>
+            <h4>Building Better Forms Layer by Layer</h4>
+          </section>
+
+          <!-- URL State -->
+          <section>
+            <h3>1. URL State Management</h3>
+            <ul>
+              <li>Shareable form state</li>
+              <li>Back button support</li>
+              <li>Form restoration</li>
+            </ul>
+          </section>
+
+          <!-- Client State -->
+          <section>
+            <h3>2. Client State Management</h3>
+            <ul>
+              <li>Real-time updates</li>
+              <li>Optimistic UI</li>
+              <li>Better UX</li>
+            </ul>
+          </section>
+
+          <!-- Validation -->
+          <section>
+            <h3>3. Form Validation</h3>
+            <ul>
+              <li>Type safety with Zod</li>
+              <li>Real-time validation</li>
+              <li>Better error messages</li>
+            </ul>
+          </section>
+
+          <!-- Enhanced UX -->
+          <section>
+            <h3>4. Enhanced UX</h3>
+            <ul>
+              <li>React Hook Form integration</li>
+              <li>Field-level validation</li>
+              <li>Performance optimization</li>
+            </ul>
+          </section>
+
+          <!-- Animations -->
+          <section>
+            <h3>5. Animations</h3>
+            <ul>
+              <li>Smooth transitions</li>
+              <li>Loading states</li>
+              <li>Success/error feedback</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Best Practices -->
+        <section>
+          <section>
+            <h2>Best Practices & Takeaways</h2>
+          </section>
+
+          <section>
+            <h3>Form Design Principles</h3>
+            <ul>
+              <li>Clear feedback</li>
+              <li>Progressive disclosure</li>
+              <li>Graceful degradation</li>
+              <li>Accessibility first</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Technical Considerations</h3>
+            <ul>
+              <li>Type safety</li>
+              <li>Performance optimization</li>
+              <li>Error boundaries</li>
+              <li>Testing strategies</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Q&A -->
+        <section>
+          <h2>Questions?</h2>
+          <p>
+            <a href="https://github.com/sergical/delightful-forms">
+              github.com/sergical/delightful-forms
+            </a>
+          </p>
+        </section>
+      </div>
+    </div>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

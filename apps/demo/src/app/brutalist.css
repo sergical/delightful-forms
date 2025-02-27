@@ -13,55 +13,103 @@
   text-transform: uppercase;
 }
 
+/* Form Elements */
 .brutalist input,
 .brutalist textarea,
 .brutalist select {
-  border: 2px solid black !important;
+  border: var(--brutalist-border-width) solid var(--foreground) !important;
   border-radius: 0 !important;
-  background-color: white !important;
-  box-shadow: 4px 4px 0 rgba(0, 0, 0, 1) !important;
-  transition: all 0.1s ease-in-out;
+  background-color: var(--background) !important;
+  box-shadow: var(--brutalist-shadow-sm) var(--brutalist-shadow-color) !important;
+  transition: var(--brutalist-transition);
+  padding: 0.5rem !important;
 }
 
 .brutalist input:focus,
 .brutalist textarea:focus,
 .brutalist select:focus {
   outline: none !important;
-  box-shadow: 6px 6px 0 rgba(0, 0, 0, 1) !important;
+  box-shadow: var(--brutalist-shadow-md) var(--brutalist-shadow-color) !important;
   transform: translate(-2px, -2px);
 }
 
+/* Buttons */
 .brutalist button {
-  background-color: black !important;
-  color: white !important;
-  border: 2px solid black !important;
+  background-color: var(--foreground) !important;
+  color: var(--background) !important;
+  border: var(--brutalist-border-width) solid var(--foreground) !important;
   border-radius: 0 !important;
   font-weight: bold !important;
   text-transform: uppercase;
-  box-shadow: 4px 4px 0 rgba(0, 0, 0, 1) !important;
-  transition: all 0.1s ease-in-out;
+  padding: 0.5rem 1rem !important;
+  box-shadow: var(--brutalist-shadow-sm) var(--brutalist-shadow-color) !important;
+  transition: var(--brutalist-transition);
 }
 
 .brutalist button:hover {
-  box-shadow: 6px 6px 0 rgba(0, 0, 0, 1) !important;
+  box-shadow: var(--brutalist-shadow-md) var(--brutalist-shadow-color) !important;
   transform: translate(-2px, -2px);
 }
 
 .brutalist button:active {
-  box-shadow: 2px 2px 0 rgba(0, 0, 0, 1) !important;
+  box-shadow: var(--brutalist-shadow-sm) var(--brutalist-shadow-color) !important;
   transform: translate(2px, 2px);
 }
 
+/* Cards */
 .brutalist .card {
-  border: 2px solid black !important;
+  border: var(--brutalist-border-width) solid var(--foreground) !important;
   border-radius: 0 !important;
-  box-shadow: 8px 8px 0 rgba(0, 0, 0, 1) !important;
+  background-color: var(--background) !important;
+  box-shadow: var(--brutalist-shadow-lg) var(--brutalist-shadow-color) !important;
+  padding: 1rem !important;
 }
 
+/* Messages */
 .brutalist .error-message {
-  background-color: white;
-  border: 2px solid #ff0000;
-  padding: 0.25rem 0.5rem;
+  background-color: var(--background);
+  border: var(--brutalist-border-width) solid var(--brutalist-error-color);
+  padding: 0.5rem 1rem;
   font-weight: bold;
-  box-shadow: 4px 4px 0 rgba(255, 0, 0, 0.5);
+  box-shadow: var(--brutalist-shadow-sm) rgba(255, 0, 0, 0.5);
+}
+
+/* Links */
+.brutalist a {
+  color: var(--foreground) !important;
+  text-decoration: none !important;
+  border-bottom: var(--brutalist-border-width) solid var(--foreground) !important;
+  transition: var(--brutalist-transition);
+}
+
+.brutalist a:hover {
+  background-color: var(--foreground) !important;
+  color: var(--background) !important;
+}
+
+/* Labels */
+.brutalist label {
+  font-weight: bold !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Tables */
+.brutalist table {
+  border-collapse: collapse !important;
+  width: 100%;
+}
+
+.brutalist th,
+.brutalist td {
+  border: var(--brutalist-border-width) solid var(--foreground) !important;
+  padding: 0.5rem 1rem !important;
+  text-align: left;
+}
+
+.brutalist th {
+  background-color: var(--foreground) !important;
+  color: var(--background) !important;
+  font-weight: bold !important;
+  text-transform: uppercase;
 }

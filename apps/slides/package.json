@@ -2,6 +2,7 @@
   "name": "slides",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -9,9 +10,11 @@
     "clean": "rm -rf .turbo node_modules dist"
   },
   "dependencies": {
-    "reveal.js": "^5.1.0"
+    "@types/reveal.js": "^5.0.5",
+    "reveal.js": "^5.0.4"
   },
   "devDependencies": {
+    "terser": "^5.29.2",
     "vite": "^6.2.0"
   }
 }

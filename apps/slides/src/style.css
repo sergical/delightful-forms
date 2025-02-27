@@ -1,0 +1,72 @@
+/* Custom theme overrides */
+:root {
+  --r-main-font:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  --r-heading-font: var(--r-main-font);
+  --r-code-font: "Space Mono", monospace;
+}
+
+.reveal {
+  font-family: var(--r-main-font);
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+  font-family: var(--r-heading-font);
+  text-transform: none;
+  letter-spacing: -0.025em;
+}
+
+.reveal pre {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.reveal code {
+  font-family: var(--r-code-font);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+/* Custom styles for specific sections */
+.reveal .problem-slide {
+  color: #ff4444;
+}
+
+.reveal .solution-slide {
+  color: #44ff44;
+}
+
+/* Custom animations */
+@keyframes highlight {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgba(255, 255, 0, 0.2);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.reveal .highlight {
+  animation: highlight 2s ease-in-out;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .reveal {
+    font-size: 32px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .reveal {
+    font-size: 20pt;
+  }
+}
